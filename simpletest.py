@@ -72,4 +72,6 @@ while True:
   else:
     print('Failed to get reading. Try again!')
 
-  time.sleep(3)
+
+  sleeptime = 12 * 60   # Sleep for 12 minutes.
+  time.sleep(sleeptime)
