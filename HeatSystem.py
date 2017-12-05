@@ -43,7 +43,22 @@ class HeatSystem:
     # Begin method Exec
     def Exec(self):
         print "HeatSystem::Exec"
+
+        while True:
+            GetAirTemp()
+            GetWaterTemp()
+            time.sleep(3)
     # End method Exec
+
+    # Begin method GetAirTemp
+    def GetAirTemp(self):
+        print "HeatSystem::GetAirTemp"
+    # End method GetAirTemp
+
+    # Begin method GetWaterTemp
+    def GetWaterTemp(self):
+        print "HeatSystem::GetWaterTemp"
+    # End method GetWaterTemp
 
 ################################################################
 #
