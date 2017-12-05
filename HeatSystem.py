@@ -38,6 +38,28 @@ class HeatSystem:
     # Begin method __init__
     def __init__(self):
         print "HeatSystem constructor"
+
+
+
+
+
+
+
+        # Sensor should be set to Adafruit_DHT.DHT11,
+	# Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
+	self.sensor = Adafruit_DHT.AM2302
+
+
+	# Example using a Raspberry Pi with DHT sensor
+	# connected to GPIO24.
+	self.pin = 24
+
+
+
+
+
+
+
     # End method __init__
 
     # Begin method Exec
@@ -66,15 +88,6 @@ class HeatSystem:
 #
 ################################################################
 
-
-# Sensor should be set to Adafruit_DHT.DHT11,
-# Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
-sensor = Adafruit_DHT.AM2302
-
-
-# Example using a Raspberry Pi with DHT sensor
-# connected to GPIO24.
-pin = 24
 
 
 def writeStats(_temp, _humidity):
