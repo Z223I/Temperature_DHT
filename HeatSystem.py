@@ -45,8 +45,8 @@ class HeatSystem:
         print "HeatSystem::Exec"
 
         while True:
-            GetAirTemp()
-            GetWaterTemp()
+            self.GetAirTemp()
+            self.GetWaterTemp()
             time.sleep(3)
     # End method Exec
 
@@ -86,7 +86,7 @@ def writeStats(_temp, _humidity):
 
 hs = HeatSystem()
 
-hs.Exec()
+#hs.Exec()
 
 
 while True:
