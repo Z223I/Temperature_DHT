@@ -23,7 +23,8 @@
 import Adafruit_DHT
 import time
 
-#time.sleep(1)
+
+# Some code by MarcScott.  https://github.com/MarcScott/temperature-log
 
 
 # Sensor should be set to Adafruit_DHT.DHT11,
@@ -38,9 +39,8 @@ sensor = Adafruit_DHT.AM2302
 # connected to GPIO23.
 pin = 24
 
-theTime = []
-theTemp = []
-
+#theTime = []
+#theTemp = []
 
 
 def writeStats(_temp, _humidity):
@@ -74,4 +74,5 @@ while True:
 
 
   sleeptime = 12 * 60   # Sleep for 12 minutes.
+#  time.sleep(3)
   time.sleep(sleeptime)
