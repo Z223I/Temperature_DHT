@@ -66,16 +66,47 @@ class HeatSystem:
     def Exec(self):
         print "HeatSystem::Exec"
 
-        while True:
+        shouldContinue = True
+        while shouldContinue:
             self.GetAirTemp()
             self.GetWaterTemp()
             time.sleep(3)
+	    shouldContinue = False
     # End method Exec
 
     # Begin method GetAirTemp
     def GetAirTemp(self):
         print "HeatSystem::GetAirTemp"
+
+	humidity = 0
+	temperature = 0
+	temperatureF = 0
+
+  	# Try to grab a sensor reading.  Use the read_retry method which will retry up
+	# to 15 times to get a sensor reading (waiting 2 seconds between each retry).
+	humidity, temperature = Adafruit_DHT.read_retry(self.sensor, self.pin)
+
+	# Note that sometimes you won't get a reading and
+	# the results will be null (because Linux can't
+	# guarantee the timing of calls to read the sensor).
+	# If this happens try again!
+	if humidity is not None and temperature is not None:
+
+	    print('Temp={0:0.1f}C  Humidity={1:0.1f}%'.format(temperature, humidity))
+	    temperatureF = temperature * 1.8 + 32
+	    print ('Temp{0:0.1f}F'.format(temperatureF))
+	    writeStats(temperatureF, humidity)
+	else:
+	    print('Failed to get reading. Try again!')
+
+
+
+
     # End method GetAirTemp
+
+
+
+
 
     # Begin method GetWaterTemp
     def GetWaterTemp(self):
@@ -99,28 +130,4 @@ def writeStats(_temp, _humidity):
 
 hs = HeatSystem()
 
-#hs.Exec()
-
-
-while True:
-  # Try to grab a sensor reading.  Use the read_retry method which will retry up
-  # to 15 times to get a sensor reading (waiting 2 seconds between each retry).
-  humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-
-  # Note that sometimes you won't get a reading and
-  # the results will be null (because Linux can't
-  # guarantee the timing of calls to read the sensor).
-  # If this happens try again!
-  if humidity is not None and temperature is not None:
-
-    print('Temp={0:0.1f}C  Humidity={1:0.1f}%'.format(temperature, humidity))
-    temperatureF = temperature * 1.8 + 32
-    print ('Temp{0:0.1f}F'.format(temperatureF))
-    writeStats(temperatureF, humidity)
-  else:
-    print('Failed to get reading. Try again!')
-
-
-  sleeptime = 12 * 60   # Sleep for 12 minutes.
-#  time.sleep(sleeptime)
-  time.sleep(3)
+hs.Exec()
